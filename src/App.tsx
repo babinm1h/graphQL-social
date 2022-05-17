@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useMutation } from '@apollo/client';
+import React, { useContext, useEffect } from 'react';
+import AppRoutes from './components/AppRoutes';
+import MainLayout from './components/MainLayout/MainLayout';
+import { AuthContext } from './context/auth';
+import { GET_AUTH } from './graphQL/users/mutation';
+import { IGetAuthResponse } from './graphQL/types';
 
-function App() {
+
+const App = () => {
+  const { fetchAuth } = useContext(AuthContext)
+
+  const [getAuth, { loading }] = useMutation<IGetAuthResponse>(GET_AUTH, {
+    update(_, result) {
+      if (result.data) {
+        fetchAuth(result.data.getAuth)
+      }
+    }
+  })
+
+
+  useEffect(() => {
+    getAuth()
+  }, [])
+
+
+  if (loading) {
+    return <div className="">LoadiN</div>
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MainLayout>
+        <AppRoutes />
+      </MainLayout>
+    </>
   );
-}
+};
 
 export default App;
