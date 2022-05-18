@@ -5,6 +5,7 @@ import MainLayout from './components/MainLayout/MainLayout';
 import { AuthContext } from './context/auth';
 import { GET_AUTH } from './graphQL/users/mutation';
 import { IGetAuthResponse } from './graphQL/types';
+import Loader from './components/Loader/Loader';
 
 
 const App = () => {
@@ -25,7 +26,9 @@ const App = () => {
 
 
   if (loading) {
-    return <div className="">LoadiN</div>
+    return <div className="text-center h-screen w-full flex items-center justify-center">
+      <Loader />
+    </div>
   }
 
 

@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { CameraIcon, CheckIcon, XIcon } from '@heroicons/react/outline';
-import React, { FC, useState } from 'react';
+import React, { FC, useRef, useState } from 'react';
 import { IGetUserResponse, IUploadAvatarResponse } from '../../graphQL/types';
 import { UPLOAD_AVATAR } from '../../graphQL/upload/mutation';
 import { GET_USER } from '../../graphQL/users/query';
@@ -13,6 +13,7 @@ interface IProfileAvatarProps {
 }
 
 const ProfileAvatar: FC<IProfileAvatarProps> = ({ profile, user, setAvatar }) => {
+    const avaRef = useRef<HTMLInputElement>(null)
 
     const [avatarFile, setAvatarFile] = useState<null | File>(null)
     const [avatarPreview, setAvatarPreview] = useState<null | string>(null)
@@ -40,16 +41,21 @@ const ProfileAvatar: FC<IProfileAvatarProps> = ({ profile, user, setAvatar }) =>
         }
     }
 
+    const resetInput = () => {
+        avaRef.current!.value = ""
+    }
 
     const onCancelAvatar = () => {
         setAvatarPreview(null)
         setAvatarFile(null)
+        resetInput()
     }
 
     const handleUpload = async () => {
         await uploadAvatar({ variables: { file: avatarFile } })
         setAvatarPreview(null)
         setAvatarFile(null)
+        resetInput()
     }
 
 
@@ -62,7 +68,8 @@ const ProfileAvatar: FC<IProfileAvatarProps> = ({ profile, user, setAvatar }) =>
                 {user && user.id === profile.id
                     && <label htmlFor="ava" className="hidden absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white group-hover:flex items-center justify-center h-full rounded-[50%] cursor-pointer">
                         <CameraIcon className="h-5 w-5 mr-1" />Change
-                        <input type="file" id="ava" className="hidden" onChange={handleAvatar} />
+                        <input type="file" id="ava" className="hidden" onChange={handleAvatar}
+                            ref={avaRef} />
                     </label>}
 
             </div>

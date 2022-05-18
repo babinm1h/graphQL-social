@@ -1,7 +1,8 @@
-import { useQuery } from '@apollo/client';
-import React from 'react';
+import { useLazyQuery, useQuery } from '@apollo/client';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import BackButton from '../components/BackButton';
+import Loader from '../components/Loader/Loader';
 import Post from '../components/Post/Post';
 import ProfileInfo from '../components/Profile/ProfileInfo';
 import { IGetUserResponse } from '../graphQL/types';
@@ -10,12 +11,19 @@ import { GET_USER } from '../graphQL/users/query';
 const Profile = () => {
     const { id } = useParams() as { id: string }
 
-    const { data, loading } = useQuery<IGetUserResponse>(GET_USER, { variables: { userId: id } })
+    const { data, loading, refetch } = useQuery<IGetUserResponse>(GET_USER, { variables: { userId: id } })
     const profile = data?.getUser
 
 
+    useEffect(() => {
+        refetch()
+    }, [])
+
+
     if (loading) {
-        return <div>Load</div>
+        return <div className="text-center">
+            <Loader />
+        </div>
     }
 
     return (

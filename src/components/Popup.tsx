@@ -9,7 +9,7 @@ interface IPopupProps {
 
 const Popup: FC<IPopupProps> = ({ children, onClose, title }) => {
     return (
-        <div className="bg-black bg-opacity-40 w-full h-full absolute top-0 left-0 right-0 flex  justify-center z-[5]" onClick={onClose}>
+        <div className="bg-black bg-opacity-40 w-full h-full fixed top-0 left-0 right-0 flex  justify-center z-10" onClick={onClose}>
 
             <div className="bg-white p-5 rounded-md xs:max-w-[400px] w-full h-[350px] mt-10"
                 onClick={(e) => e.stopPropagation()}>

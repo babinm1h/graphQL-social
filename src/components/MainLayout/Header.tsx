@@ -26,7 +26,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="w-full px-5 h-[70px] flex flex-col justify-center shadow-md bg-white">
+            <header className="fixed top-0 left-0 right-0 w-full px-5 h-[70px] flex flex-col justify-center shadow-md bg-white z-[5]">
                 <div className="flex items-center justify-between">
                     <NavLink to={AllRoutes.home}>
                         <img src="https://miro.medium.com/max/1200/0*V0-GSX2HXk9rI30i.png" alt="logo"
@@ -43,7 +43,7 @@ const Header = () => {
                                 </button>
                                 <NavLink to={AllRoutes.profile + `/${user.id}`} className="gap-2 p-2 border border-gray-300 rounded-full flex items-center">
                                     <img src={user.avatar} alt="userimg" className="w-5 h-5 rounded-[50%]" />
-                                    <span className="hidden xs:max-w-[100px] truncate">
+                                    <span className="hidden xs:max-w-[100px] truncate xs:inline-flex">
                                         {user.username}
                                     </span>
                                 </NavLink>

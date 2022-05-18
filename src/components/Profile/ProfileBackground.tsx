@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import { CameraIcon, CheckIcon, XIcon } from '@heroicons/react/outline';
-import React, { FC, SetStateAction, useRef, useState } from 'react';
+import React, { FC, SetStateAction, useEffect, useRef, useState } from 'react';
 import { IGetUserResponse } from '../../graphQL/types';
 import { UPLOAD_BACKGROUND } from '../../graphQL/upload/mutation';
 import { GET_USER } from '../../graphQL/users/query';
@@ -42,16 +42,23 @@ const ProfileBackground: FC<IProfileBackgroundProps> = ({ user, bgPreview, setBg
     }
 
 
+    const resetInput = () => {
+        bgRef.current!.value = ""
+    }
+
     const onSubmitBg = async () => {
         await uploadBackground({ variables: { file: bgFile } })
         setBgFile(null)
         setBgPreview(null)
+        resetInput()
     }
 
     const onCancelBg = () => {
         setBgPreview(null)
         setBgFile(null)
+        resetInput()
     }
+
 
     return (
         <div className=" absolute top-0 right-0 text-white">

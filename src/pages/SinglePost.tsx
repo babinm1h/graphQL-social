@@ -8,6 +8,7 @@ import { IFetchSinglePostResponse } from '../graphQL/types';
 import Comment from "../components/Comment"
 import BackButton from '../components/BackButton';
 import { AuthContext } from '../context/auth';
+import Loader from '../components/Loader/Loader';
 
 const SinglePost = () => {
     const { user } = useContext(AuthContext)
@@ -17,7 +18,9 @@ const SinglePost = () => {
     const post = data?.getPost;
 
     if (loading) {
-        return <div className="">load</div>
+        return <div className="text-center">
+            <Loader />
+        </div>
     }
 
 

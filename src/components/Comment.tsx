@@ -9,6 +9,7 @@ import { IDeleteCommentResponse } from '../graphQL/types';
 import { IComment } from '../types/models';
 import { getPostDate } from '../utils/getDate';
 import { AllRoutes } from './AppRoutes';
+import Loader from './Loader/Loader';
 
 interface ICommentProps {
     item: IComment
@@ -18,13 +19,16 @@ const Comment: FC<ICommentProps> = ({ item }) => {
     const { user } = useContext(AuthContext)
     const { id } = useParams() as { id: string }
 
-    const [deleteComment, { loading }] = useMutation<IDeleteCommentResponse>(DELETE_COMMENT, {
-
-    })
-
+    const [deleteComment, { loading }] = useMutation<IDeleteCommentResponse>(DELETE_COMMENT, {})
 
     const handleDelete = () => {
         deleteComment({ variables: { commentId: item.id, postId: id } })
+    }
+
+    if (loading) {
+        return <div className="text-center">
+            <Loader />
+        </div>
     }
 
     return (

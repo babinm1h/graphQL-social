@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useContext } from 'react';
+import Loader from '../components/Loader/Loader';
 import Post from '../components/Post/Post';
 import PostForm from '../components/PostForm';
 import { AuthContext } from '../context/auth';
@@ -12,7 +13,9 @@ const Home = () => {
     const { user } = useContext(AuthContext)
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div className="text-center">
+            <Loader />
+        </div>
     }
 
     return (

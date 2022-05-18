@@ -19,7 +19,7 @@ const ProfileInfo: FC<IProfileInfoProps> = ({ profile }) => {
         <div className="">
             <div className="relative w-full h-[300px] border border-gray-300 overflow-hidden flex flex-col">
                 <div className="w-full h-full bg-cover bg-center bg-no-repeat bg-gray-200"
-                    style={{ backgroundImage: `url(${`${bgPreview ? bgPreview : user?.background}`})` }} />
+                    style={{ backgroundImage: `url(${`${bgPreview ? bgPreview : profile.background}`})` }} />
 
                 <ProfileAvatar profile={profile} user={user} setAvatar={setAvatar} />
 
