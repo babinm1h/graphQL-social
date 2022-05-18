@@ -3,7 +3,7 @@ import { IAuthContext, ActionTypes } from "../types/authContext";
 import { IUser } from "../types/models";
 
 
-const initalState: any = {
+const initalState: { user: IUser | null } = {
     user: null,
 }
 
@@ -13,7 +13,9 @@ export const AuthContext = createContext<IAuthContext>({
     user: null,
     login: (userData: IUser) => { },
     logout: () => { },
-    fetchAuth: (userData: IUser) => { }
+    fetchAuth: (userData: IUser) => { },
+    setAvatar: (url: string) => { },
+    setBackground: (url: string) => { }
 })
 
 
@@ -30,6 +32,14 @@ const authReducer = (state: any, action: any) => {
 
         case ActionTypes.FETCH_AUTH: {
             return { ...state, user: action.payload }
+        }
+
+        case ActionTypes.SET_AVATAR: {
+            return { ...state, user: { ...state.user, avatar: action.payload } }
+        }
+
+        case ActionTypes.SET_BACKGROUND: {
+            return { ...state, user: { ...state.user, background: action.payload } }
         }
 
         default: {
@@ -62,7 +72,22 @@ export const AuthProvider: FC<IProps> = ({ children }) => {
         dispatch({ type: ActionTypes.FETCH_AUTH, payload: userData })
     }
 
-    return <AuthContext.Provider value={{ user: state.user, login, logout, fetchAuth }}>
+    const setAvatar = (url: string) => {
+        dispatch({ type: ActionTypes.SET_AVATAR, payload: url })
+    }
+
+    const setBackground = (url: string) => {
+        dispatch({ type: ActionTypes.SET_BACKGROUND, payload: url })
+    }
+
+    return <AuthContext.Provider value={{
+        user: state.user,
+        login,
+        logout,
+        fetchAuth,
+        setAvatar,
+        setBackground
+    }}>
         {children}
     </AuthContext.Provider >
 }

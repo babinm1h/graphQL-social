@@ -46,3 +46,8 @@ export interface IDeleteCommentResponse {
 export interface IGetUserResponse {
     getUser: IUser
 }
+
+
+export interface IUploadAvatarResponse {
+    uploadAvatar: string
+}

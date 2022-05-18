@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router';
 import CommentForm from '../components/CommentForm';
 import Post from '../components/Post/Post';
@@ -7,8 +7,10 @@ import { FETCH_SINGLE_POST } from '../graphQL/posts/query';
 import { IFetchSinglePostResponse } from '../graphQL/types';
 import Comment from "../components/Comment"
 import BackButton from '../components/BackButton';
+import { AuthContext } from '../context/auth';
 
 const SinglePost = () => {
+    const { user } = useContext(AuthContext)
     const { id } = useParams() as { id: string }
     const { data, loading } = useQuery<IFetchSinglePostResponse>(FETCH_SINGLE_POST, { variables: { postId: id } })
 
@@ -27,7 +29,7 @@ const SinglePost = () => {
             <Post item={post!} />
 
             <div className="mt-7">
-                <CommentForm />
+                {user && <CommentForm />}
             </div>
 
             <div className="mt-7">

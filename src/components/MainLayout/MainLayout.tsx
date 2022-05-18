@@ -9,7 +9,7 @@ const MainLayout: FC<IProps> = ({ children }) => {
     return (
         <>
             <Header />
-            <main className="max-w-6xl mx-auto w-full p-3 h-full flex-grow my-10">
+            <main className="max-w-6xl mx-auto w-full p-3 h-full flex-grow my-5">
                 {children}
             </main>
 

@@ -1,6 +1,5 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { AuthContext } from '../../context/auth';
 import { IPost } from '../../types/models';
 import { getPostDate } from '../../utils/getDate';
 import { AllRoutes } from '../AppRoutes';
@@ -13,15 +12,14 @@ interface IPostProps {
 
 
 const Post: FC<IPostProps> = ({ item }) => {
-    const { user } = useContext(AuthContext)
 
     return (
-        <li className="shadow-xs py-3 list-none bg-white">
+        <li className="shadow-xs py-3 list-none bg-white h-full">
             <div className="flex flex-col">
                 <div className="flex gap-4 px-5">
                     <NavLink to={AllRoutes.profile + `/${item.user.id}`}>
-                        <img src={user?.avatar} alt="user"
-                            className="h-10 w-10 rounded-[50%] border" />
+                        <img src={item.user.avatar} alt="user"
+                            className="h-10 w-10 rounded-[50%] border object-cover" />
                     </NavLink>
                     <div className="flex-auto">
                         <NavLink to={AllRoutes.profile + `/${item.user.id}`} className="font-bold hover:underline">

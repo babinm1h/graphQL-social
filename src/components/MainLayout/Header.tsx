@@ -43,7 +43,9 @@ const Header = () => {
                                 </button>
                                 <NavLink to={AllRoutes.profile + `/${user.id}`} className="gap-2 p-2 border border-gray-300 rounded-full flex items-center">
                                     <img src={user.avatar} alt="userimg" className="w-5 h-5 rounded-[50%]" />
-                                    <span className="">{user.username}</span>
+                                    <span className="hidden xs:max-w-[100px] truncate">
+                                        {user.username}
+                                    </span>
                                 </NavLink>
                             </>
                             : <NavLink to={AllRoutes.login} className="blueLink">

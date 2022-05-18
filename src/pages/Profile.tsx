@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import React, { useRef } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 import BackButton from '../components/BackButton';
 import Post from '../components/Post/Post';
