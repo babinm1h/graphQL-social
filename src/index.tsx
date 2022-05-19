@@ -9,7 +9,7 @@ import { setContext } from "apollo-link-context";
 import { createUploadLink } from "apollo-upload-client"
 
 const link = createUploadLink({
-  uri: "http://localhost:7777/graphql",
+  uri: "https://graphql-s0cial.herokuapp.com/graphql",
 })
 
 
