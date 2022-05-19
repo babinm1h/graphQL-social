@@ -6,6 +6,8 @@ import Profile from '../pages/Profile';
 import Register from '../pages/Register';
 import { AuthContext } from "../context/auth"
 import SinglePost from '../pages/SinglePost';
+import ForgotPassword from '../pages/ForgotPassword';
+import ChangePassword from '../pages/ChangePassword';
 
 
 export enum AllRoutes {
@@ -13,7 +15,9 @@ export enum AllRoutes {
     profile = "/profile",
     login = "/login",
     register = "/register",
-    post = "/post"
+    post = "/post",
+    forgot = "/forgot",
+    changePassword = "/password"
 }
 
 
@@ -25,7 +29,9 @@ const AppRoutes = () => {
         { path: AllRoutes.profile + "/:id", elem: <Profile /> },
         { path: AllRoutes.login, elem: <Login /> },
         { path: AllRoutes.register, elem: <Register /> },
-        { path: AllRoutes.post + '/:id', elem: <SinglePost /> }
+        { path: AllRoutes.post + '/:id', elem: <SinglePost /> },
+        { path: AllRoutes.forgot, elem: <ForgotPassword /> },
+        { path: AllRoutes.changePassword + "/:secretLink", elem: <ChangePassword /> }
     ]
 
     const authRoutes = [

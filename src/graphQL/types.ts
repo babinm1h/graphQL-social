@@ -49,5 +49,11 @@ export interface IGetUserResponse {
 
 
 export interface IUploadAvatarResponse {
-    uploadAvatar: string
+    uploadAvatar: boolean
 }
+
+
+export interface ISendLinkResponse {
+    sendLink: string
+}
+

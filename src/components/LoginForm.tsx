@@ -48,7 +48,15 @@ const LoginForm = () => {
             </button>
 
             <p className="mt-3">Dont have an account?
-                <NavLink to={AllRoutes.register} className="ml-2 text-cyan-600 underline">Registration</NavLink>
+                <NavLink to={AllRoutes.register} className="ml-2 text-cyan-600 hover:underline">
+                    Registration
+                </NavLink>
+            </p>
+
+            <p className="mt-1">Forgot password?
+                <NavLink to={AllRoutes.forgot} className="ml-2 text-cyan-600 hover:underline">
+                    Recover password
+                </NavLink>
             </p>
 
             {error && <div className="text-red-600 mt-4 bg-red-100 p-2 border border-red-600 rounded-md">

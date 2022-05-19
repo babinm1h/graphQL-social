@@ -27,3 +27,17 @@ export const GET_AUTH = gql`
         }
     }
 `
+
+
+export const SEND_LINK = gql`
+    mutation sendLink($email:String!){
+        sendLink(email:$email)
+    }
+`
+
+
+export const CHANGE_PASSWORD = gql`
+    mutation changePassword($secretLink:String!, $password:String!){
+        changePassword(secretLink:$secretLink,password:$password)
+    }
+`
