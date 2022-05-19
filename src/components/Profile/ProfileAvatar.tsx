@@ -60,10 +60,10 @@ const ProfileAvatar: FC<IProfileAvatarProps> = ({ profile, user, setAvatar }) =>
 
 
     return (
-        <div className="absolute top-[50%] left-10 z-[2] translate-y-[-50%] flex gap-5 items-center">
+        <div className="absolute top-[50%] left-5 xs:left-10 z-[2] translate-y-[-50%] flex xs:gap-5 items-center gap-3">
             <div className="group relative overflow-hidden">
                 <img src={avatarPreview ? avatarPreview : profile?.avatar} alt="userimg"
-                    className="h-28 w-28 rounded-[50%] object-cover object-center" />
+                    className="h-24 w-24 xs:h-28 xs:w-28 rounded-[50%] object-cover object-center" />
 
                 {user && user.id === profile.id
                     && <label htmlFor="ava" className="hidden absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white group-hover:flex items-center justify-center h-full rounded-[50%] cursor-pointer">
